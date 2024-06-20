@@ -85,7 +85,7 @@ cat <<EOF > ${ENV_FN_NAME}
 #!/bin/bash
 set -x
 source ${CONDA_INSTALL_DIR}/bin/activate ${ENV_NAME}
-torch_ccl_path=\$(python -c "import torch; import oneccl_bindings_for_pytorch; import os;  print(os.path.abspath(os.path.dirname(oneccl_bindings_for_pytorch.__file__)))" 2> /dev/null)
+torch_ccl_path=\$(python -c "import torch; import oneccl_bindings_for_pytorch; import os;  print(os.path.abspath(os.path.dirname(oneccl_bindings_for_pytorch.__file__)))" 2> /dev/null || true)
 if test -f \$torch_ccl_path/env/setvars.sh ; then
   source \$torch_ccl_path/env/setvars.sh
 fi
