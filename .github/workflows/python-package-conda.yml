@@ -15,9 +15,9 @@ jobs:
     - name: Set up Python 3.9
       run: |
         bash utils/setup_conda.sh
-        source env.sh
     - name: Install extension
       run: |
+        source env.sh
         python setup.py install
     - name: Lint with flake8
       run: |
