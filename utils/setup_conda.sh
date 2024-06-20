@@ -83,7 +83,7 @@ ENV_FN_NAME=env.sh
 echo "Writing an ${ENV_FN_NAME} file..."
 cat <<EOF > ${ENV_FN_NAME}
 #!/bin/bash
-
+set -x
 source ${CONDA_INSTALL_DIR}/bin/activate ${ENV_NAME}
 torch_ccl_path=\$(python -c "import torch; import oneccl_bindings_for_pytorch; import os;  print(os.path.abspath(os.path.dirname(oneccl_bindings_for_pytorch.__file__)))" 2> /dev/null)
 if test -f \$torch_ccl_path/env/setvars.sh ; then
@@ -98,6 +98,7 @@ if [ \$(uname -m) == "x86_64" ] ; then
   export KMP_BLOCKTIME=1
   export LD_PRELOAD=\${CONDA_PREFIX}/lib/libtcmalloc.so:\${CONDA_PREFIX}/lib/libiomp5.so
 fi
+set +x
 EOF
 chmod +x ${ENV_FN_NAME}
 echo "${ENV_FN_NAME} file created..."
