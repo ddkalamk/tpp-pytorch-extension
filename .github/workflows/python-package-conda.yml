@@ -18,9 +18,7 @@ jobs:
         bash utils/setup_conda.sh
     - name: Install extension
       run: |
-        bash -x env.sh
-        source env.sh
-        python setup.py install
+        bash -c "(. env.sh && python setup.py install)"
     - name: Lint with flake8
       run: |
         conda install flake8
